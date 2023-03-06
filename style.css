@@ -97,9 +97,8 @@ body{
 
 @media (max-width:720px){
     #first-para{
-        font-size:50px;
-        line-height:95px;
-        margin-top:200px;
+        font-size:40px;
+        line-height:55px;
     }
     #wc{
         font-size:15px;
@@ -108,30 +107,7 @@ body{
     #section2{
         grid-template-columns:1fr;
         place-items:center;
-    }
-
-    .imgs{
-        width:90%
-    }
-
-    .section1{
-        height:100vh;
-    }
-}
-
-@media (max-width:1010px ) and (min-width:720px){
-    #first-para{
-        font-size:50px;
-        line-height:95px;
-    }
-
-    #wc{
-        font-size:15px;
-    }
-    
-    #section2{
-        grid-template-columns:1fr;
-        place-items:center;
+        margin:auto;
     }
 
     .imgs{
