@@ -95,11 +95,12 @@ body{
     transform:translateX(0%);
 }
 
-@media (max-width:720px){
+@media (max-width:721px){
     #first-para{
         font-size:40px;
         line-height:10px;
     }
+    
     #wc{
         font-size:15px;
     }
