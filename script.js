@@ -42,11 +42,13 @@ function shuffler(list){
 
 let newPhotos = shuffler(photos)
 
+const imwi = 0
+
 newPhotos.forEach((photo) => {
     const addimg = document.createElement('img')
     addimg.src = photo
     addimg.classList.add('imgs')
-    let sec = document.getElementById('section2')
+    let sec = document.querySelector('.section2')
     sec.appendChild(addimg)
 })
 
