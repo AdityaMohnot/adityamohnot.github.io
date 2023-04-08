@@ -153,11 +153,11 @@ body{
 @media (max-width:720px){
     #first-para{
         font-size:40px;
-        line-height:95px;
+        line-height:55px;
     }
     #wc{
         font-size:15px;
-        margin-left:150px;
+        margin-left:100px;
     }
     
     .section2{
@@ -178,9 +178,13 @@ body{
         font-size:25px;
     }
     
+    #span1{
+        font-size:40px;
+    }
+    
     .sp2{
         font-size:25px;
-    }   
+    }
     
     .sp3{
         font-size:25px;
