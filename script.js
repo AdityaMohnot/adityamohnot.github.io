@@ -27,6 +27,9 @@ const photos = [
     'asa-not-code/d7.jpg',
     'asa-not-code/d1.jpg',
     'asa-not-code/d8.jpg',
+    'asa-not-code/d9.jpg',
+    'asa-not-code/d10.jpg',
+    'asa-not-code/d11.jpg',
 ]
 
 function shuffler(list){
