@@ -157,7 +157,7 @@ body{
     }
     #wc{
         font-size:15px;
-        margin-left:400px;
+        margin-left:150px;
     }
     
     .section2{
@@ -175,22 +175,22 @@ body{
     }
 
     .sp1{
-        font-size:35px;
+        font-size:25px;
     }
     
     .sp2{
-        font-size:35px;
+        font-size:25px;
     }   
     
     .sp3{
-        font-size:35px;
+        font-size:25px;
     }
     
     .div3{
-        line-height:40px;
+        line-height:20px;
     }
 
     .div4{
-        line-height:80px;
+        line-height:40px;
     }
 }
