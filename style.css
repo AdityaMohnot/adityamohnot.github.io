@@ -125,7 +125,6 @@ body{
     background:linear-gradient(transparent, #1b1a1a, #1b1a1a, #1b1a1a);
     height:90vh;
     margin-top:150px;
-    line-height:100px;
 }
 
 .sp1{
@@ -148,6 +147,7 @@ body{
     margin-bottom:0px;  
     text-align:center;
     padding-top:390px;
+    line-height:100px;
 }
 
 @media (max-width:720px){
@@ -157,6 +157,7 @@ body{
     }
     #wc{
         font-size:15px;
+        margin-left:400px;
     }
     
     .section2{
@@ -166,10 +167,30 @@ body{
     }
 
     .imgs{
-        width:90%
+        width:75%
     }
 
     .section1{
         height:100vh;
+    }
+
+    .sp1{
+        font-size:35px;
+    }
+    
+    .sp2{
+        font-size:35px;
+    }   
+    
+    .sp3{
+        font-size:35px;
+    }
+    
+    .div3{
+        line-height:40px;
+    }
+
+    .div4{
+        line-height:80px;
     }
 }
