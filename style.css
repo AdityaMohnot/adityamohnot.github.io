@@ -7,7 +7,7 @@
 body{
     margin:0px;
     margin-top:15px;
-    background:url(asa-not-code/star.jpg);
+    background-color:#1c1c1c;
 }
 
 .section1{
@@ -38,15 +38,6 @@ body{
     font-weight:bold;
 }
 
-
-.a1{
-    background:url(https://upload.wikimedia.org/wikipedia/commons/4/4a/Color_changing_gradient_rainbow.gif);
-    color:transparent;
-    -webkit-background-clip:text;
-    text-decoration: underline;
-    
-}
-
 ::-webkit-scrollbar {
     width:17px;
 }
@@ -60,7 +51,7 @@ body{
     background: url(https://upload.wikimedia.org/wikipedia/commons/4/4a/Color_changing_gradient_rainbow.gif);
 }
 
-#span2, #span4{
+#span2{
     font-family:rubik;
 }
 
@@ -122,8 +113,7 @@ body{
 }
 
 .section3{
-    background:linear-gradient(transparent, #1b1a1a, #1b1a1a, #1b1a1a);
-    height:90vh;
+    height:70vh;
     margin-top:150px;
 }
 
@@ -143,22 +133,30 @@ body{
 
 .div3{
     font-family:lobster;
-    color:#ce6598;
+    color:rgb#1c1c1c;
     margin-bottom:0px;  
     text-align:center;
     padding-top:390px;
     line-height:100px;
+    background-color:#b64cbb;
+    border-radius:70% 70% 0% 0%;
+    height:40vh;
+}
+
+.a1{
+    color:lightgrey;
+    -webkit-background-clip:text;
+    text-decoration:none;   
 }
 
 @media (max-width:720px){
     #first-para{
-        font-size:55px;
-        line-height:55px;
+        font-size:40px;
+        line-height:95px;
     }
     #wc{
-        font-size:9px;
-        margin-left:85px;
-        width:200px;
+        font-size:15px;
+        margin-left:400px;
     }
     
     .section2{
@@ -176,29 +174,22 @@ body{
     }
 
     .sp1{
-        font-size:25px;
-    }
-    
-    #span1{
-        font-size:40px;
+        font-size:35px;
     }
     
     .sp2{
-        font-size:25px;
-    }
+        font-size:35px;
+    }   
     
     .sp3{
-        font-size:25px;
+        font-size:35px;
     }
     
     .div3{
-        line-height:20px;
-    }
-
-    .div4{
         line-height:40px;
     }
 
-    .section3{
-        margin-top:75px;
+    .div4{
+        line-height:80px;
+    }
 }
