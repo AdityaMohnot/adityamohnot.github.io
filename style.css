@@ -7,7 +7,7 @@
 body{
     margin:0px;
     margin-top:15px;
-    background-color:#1c1c1c;
+    background:url('asa-not-code/star.jpg');
 }
 
 .section1{
@@ -114,7 +114,7 @@ body{
 
 .section3{
     height:70vh;
-    margin-top:150px;
+    margin-top:170px;
 }
 
 .sp1{
