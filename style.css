@@ -195,4 +195,10 @@ body{
     .div3{
         line-height:40px;
     }
+    
+    .imgs:hover{
+        transition:0;
+        width:75%;
+        box-shadow:0;
+    }
 }
