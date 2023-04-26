@@ -145,7 +145,6 @@ body{
 
 .a1{
     color:lightgrey;
-    -webkit-background-clip:text;
     text-decoration:none;   
 }
 
@@ -155,8 +154,7 @@ body{
         line-height:95px;
     }
     #wc{
-        font-size:15px;
-        margin-left:400px;
+        display: none;
     }
     
     .section2{
@@ -187,10 +185,20 @@ body{
     
     .div3{
         line-height:40px;
+        border-radius:45% 45% 0% 0%;
+        margin-bottom:0px;
+        padding-bottom:0px;
     }
 
     .div4{
         line-height:60px;
     }
 
+    #span2{
+        line-height:35px;
+    }
+
+    #span4{
+        line-height:35px;
+    }
 }
