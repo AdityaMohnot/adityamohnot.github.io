@@ -1,78 +1,181 @@
-setTimeout(() => {
-    document.getElementById('span2').classList.add('animate1')
-    document.getElementById('span2').classList.remove('hidden')
-}, 1000)
+document.getElementById("sb").addEventListener("click", () => {
+  const pref = document.querySelector('input[name="pref"]:checked');
+  const text = document.getElementById("ta").value.trim().toLowerCase();
 
-setTimeout(() => {
-    document.getElementById('span3').classList.add('animate1')
-    document.getElementById('span3').classList.remove('hidden')
-}, 2000)
+  if (!pref || text === "") {
+    alert("Please enter your meals and select a dietary preference.");
+    return;
+  }
 
-setTimeout(() => {
-    document.getElementById('span4').classList.add('animate1')
-    document.getElementById('span4').classList.remove('hidden')
-}, 3000)
+  const ctx = document.getElementById("nutrientChart").getContext("2d");
 
-setTimeout(() => {
-    document.getElementById('anipara').classList.add('animate1')
-    document.getElementById('anipara').classList.remove('hidden')
-}, 4000)
+  // Thresholds for nutrients to be considered sufficient
+  const nutrientThresholds = {
+    Carbs: 50,
+    Protein: 40,
+    Fats: 20,
+    Fiber: 15,
+    Iron: 10,
+    Calcium: 15,
+    VitaminD: 5,
+    VitaminB12: 4,
+    Omega3: 8,
+    Magnesium: 10,
+    Potassium: 10,
+    Zinc: 8
+  };
 
-const photos = [
-    'asa-not-code/d2.png', 
-    'asa-not-code/d3.jpg',
-    'asa-not-code/d4.jpg',
-    'asa-not-code/d5.jpg',
-    'asa-not-code/d6.jpg',
-    'asa-not-code/d7.jpg',
-    'asa-not-code/d1.jpg',
-    'asa-not-code/d8.jpg',
-    'asa-not-code/d9.jpg',
-    'asa-not-code/d10.jpg',
-    'asa-not-code/d11.jpg',
-]
+  // Specific meal suggestions for next day per preference to fill gaps
+  const mealSuggestions = {
+    ve: [
+      "Include spinach and paneer dishes like palak paneer.",
+      "Add chickpea or lentil salads for extra protein and fiber.",
+      "Eat a serving of nuts like almonds or walnuts for healthy fats."
+    ],
+    v: [
+      "Eat dal, paneer, and vegetable sabzi for balanced nutrients.",
+      "Include a bowl of curd or fortified plant milk for calcium and Vitamin B12.",
+      "Enjoy fish like sardines or mackerel for Omega-3 fatty acids."
+    ],
+    nv: [
+      "Include grilled chicken or fish for high-quality protein and Omega-3.",
+      "Add green leafy vegetables like spinach for iron and calcium.",
+      "Consider eggs or dairy for Vitamin B12 and additional protein."
+    ]
+  };
 
-function shuffler(list){
-    let newList = []
-    while(!(newList.length==list.length)){
-        const randItem = list[Math.floor(Math.random()*list.length)]
-        if(!newList.includes(randItem)){
-            newList.push(randItem)
-        }
+  // Demo data: simulated inputs with full 12 nutrients
+  const demoData = [
+    {
+      keywords: ["roti", "dal"],
+      pref: "v",
+      label: "5 Rotis and a Bowl of Dal",
+      nutrients: ["Carbs", "Protein", "Fats", "Fiber", "Iron", "Calcium", "VitaminD", "VitaminB12", "Omega3", "Magnesium", "Potassium", "Zinc"],
+      values: [70, 35, 12, 20, 9, 15, 5, 3, 2, 9, 10, 7],
+      text: "Carbohydrates and fiber are good, but Vitamin B12 and Omega-3 are low."
+    },
+    {
+      keywords: ["tofu", "salad"],
+      pref: "ve",
+      label: "Tofu Salad and Smoothie",
+      nutrients: ["Carbs", "Protein", "Fats", "Fiber", "Iron", "Calcium", "VitaminD", "VitaminB12", "Omega3", "Magnesium", "Potassium", "Zinc"],
+      values: [40, 50, 20, 25, 12, 20, 3, 2, 4, 11, 12, 9],
+      text: "Rich in protein and fiber but needs improved Vitamin B12 and Vitamin D."
+    },
+    {
+      keywords: ["chicken", "rice"],
+      pref: "nv",
+      label: "Chicken, Rice, and Egg",
+      nutrients: ["Carbs", "Protein", "Fats", "Fiber", "Iron", "Calcium", "VitaminD", "VitaminB12", "Omega3", "Magnesium", "Potassium", "Zinc"],
+      values: [45, 70, 30, 10, 14, 10, 10, 6, 8, 10, 9, 8],
+      text: "High in protein and good fats but needs more fiber and micronutrients."
     }
-    return newList
-}
+  ];
 
-let newPhotos = shuffler(photos)
+  // Find matching demo data based on preference and keywords
+  let selectedDemo = null;
+  for (const item of demoData) {
+    if (pref.value === item.pref && item.keywords.some(k => text.includes(k))) {
+      selectedDemo = item;
+      break;
+    }
+  }
 
-const imwi = 0
+  if (!selectedDemo) {
+    selectedDemo = {
+      label: "Sample Meal Analysis",
+      nutrients: ["Carbs", "Protein", "Fats", "Fiber", "Iron", "Calcium", "VitaminD", "VitaminB12", "Omega3", "Magnesium", "Potassium", "Zinc"],
+      values: [50, 40, 20, 15, 8, 10, 5, 2, 5, 10, 10, 7],
+      text: "Sample analysis with estimated nutrient values."
+    };
+  }
 
-newPhotos.forEach((photo) => {
-    const addimg = document.createElement('img')
-    addimg.src = photo
-    addimg.classList.add('imgs')
-    let sec = document.querySelector('.section2')
-    sec.appendChild(addimg)
-})
+  // Destroy previous chart if exists
+  if (window.nutrientChartInstance) {
+    window.nutrientChartInstance.destroy();
+  }
 
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry)=> {
-        if (entry.isIntersecting){
-            entry.target.classList.add('show')
-        } else {
-            entry.target.classList.remove('show')
+  // Create Radar chart for nutrient profile
+  window.nutrientChartInstance = new Chart(ctx, {
+    type: "radar",
+    data: {
+      labels: selectedDemo.nutrients,
+      datasets: [{
+        label: selectedDemo.label,
+        data: selectedDemo.values,
+        backgroundColor: "rgba(255, 140, 0, 0.2)",
+        borderColor: "rgb(255, 140, 0)",
+        borderWidth: 2,
+        pointBackgroundColor: "#ff8c00"
+      }]
+    },
+    options: {
+      scales: {
+        r: {
+          beginAtZero: true,
+          max: 100,
+          angleLines: { color: "#ddd" },
+          grid: { color: "#ccc" },
+          pointLabels: { color: "#333" }
         }
-    })
-})
+      },
+      plugins: {
+        legend: { display: false }
+      }
+    }
+  });
 
-const hiddenElements = document.querySelectorAll('.imgs')
-hiddenElements.forEach((el)=> observer.observe(el))
+  // Analyze nutrients for sufficiency
+  const sufficiencies = selectedDemo.nutrients.map((nutrient, index) => {
+    const val = selectedDemo.values[index];
+    const threshold = nutrientThresholds[nutrient] || 0;
+    return { nutrient, value: val, sufficient: val >= threshold };
+  });
 
-const images = document.querySelectorAll(".imgs");
+  // Build result text
+  let result = `Your meal provides: `;
+  const sufficientNutrients = sufficiencies.filter(n => n.sufficient).map(n => n.nutrient);
+  const deficientNutrients = sufficiencies.filter(n => !n.sufficient).map(n => n.nutrient);
 
-images.forEach((image) => {
-    image.addEventListener("click", () => {
-      window.open(image.src, "_blank");
-    });
-})
+  if (sufficientNutrients.length > 0) {
+    result += sufficientNutrients.join(", ") + ".\n";
+  }
+  if (deficientNutrients.length > 0) {
+    result += "Yet, you are low on: " + deficientNutrients.join(", ") + ".\n";
+  } else {
+    result += "You have a well-balanced intake of key nutrients!\n";
+  }
+
+  // Suggestions for next day's meals
+  result += "\nSuggestions to balance your nutrients tomorrow:\n";
+  if (deficientNutrients.length > 0) {
+    // Pick suggestions based on deficiencies
+    result += "- To boost " + deficientNutrients.join(", ") + ", consider:\n";
+    if (pref.value === "v") {
+      result += "- Include spinach, chickpeas, and nuts like almonds.\n";
+    } else if (pref.value === "nv") {
+      result += "- Add fish like mackerel, green leafy vegetables, and eggs.\n";
+    } else if (pref.value === "ve") {
+      result += "- Incorporate fortified foods, lentils, and seeds.\n";
+    }
+  } else {
+    result += "- Keep up the variety and ensure daily consumption of vegetables and proteins.\n";
+  }
+
+  // Include specific dish suggestions based on deficiencies
+  result += "\nSample specific meals:\n";
+  if (deficientNutrients.includes("VitaminB12")) {
+    result += "- Have dishes like fortified cereal, eggs, or dairy.\n";
+  }
+  if (deficientNutrients.includes("Omega3")) {
+    result += "- Enjoy fish such as sardines or add flaxseed to your meals.\n";
+  }
+  if (deficientNutrients.includes("Iron")) {
+    result += "- Include spinach, lentils, and red meat.\n";
+  }
+  
+  // Show the analysis result
+  document.getElementById("s3").style.display = "block";
+  document.getElementById("resTitle").innerText = selectedDemo.label;
+  document.getElementById("resText").innerText = result;
+});
