@@ -5,14 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SehatSutra — AI Nutrition Assistant</title>
   <link rel="stylesheet" href="tyle.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script defer src="script.js"></script>
+
 </head>
 <body>
   <nav>
     <h2 id = "ais">SehatSutra</h2>
     <div id ='nd'>
       <a href = "#s2">Analyse</a>
-      <a href = "#">Results</a>
-      <a href = "#">Discuss</a>
+      <a href = "#s3">Results</a>
+      <a href = "#s4">Discuss</a>
     </div>
   </nav>
   <section id = 's1'> 
@@ -35,9 +38,10 @@
     <div id = 'd4'></div>
     <h1 id = "t3">SehatSutra</h1> 
     <p id = "des">
-      Note: This is not a working product or a final product, this is only a dispaly/prototype of how the basic features of our idea once we have completed development. This will not respond to any prompts other than the ones we will use for showcasing our idea.<br><br>
+      <span id = "sp">Note: This is only a sample display of the product, it is not the final or working release. The final product is still in development and has many more intended features. This sample will only yeild fixed outputs despite what the user's prompt is, it is only a method to display the ideals of the product.</span><br><br>
+      <span id = "sp2">The Description of the Actual Product Under Development:</span><br>
       Our system enables users to textually input or capture images of their meals, which are
-      analyzed using a deep learning model trained specifical ly on Indian dishes and thalis. Each
+      analyzed using a deep learning model trained specifically on Indian dishes and thalis. Each
       meal is mapped to nutrient data from the Indian Food Composition Tables, providing
       accurate estimates of calories and nutrient intake. Beyond daily tracking, SehatSutra uses
       predictive modeling to forecast future deficiencies and recommends balanced, region and
@@ -51,7 +55,25 @@
       Intelligence.
     </p>
   </section>
+    <section id="s3">
+    <h1 id="resTitle">Your Nutrient Analysis</h1>
+    <canvas id="nutrientChart" width="400" height="200"></canvas>
+    <div id="resText"></div>
+  </section>
+
+  <section id="s4">
+    <h1>Discuss With SehatSutra AI</h1>
+    <div id="chatbox">
+      <div id="chatDisplay">
+        <p class="botMsg">👋 Hello! I'm your SehatSutra AI Coach. Let's talk about your diet and habits!</p>
+      </div>
+      <div id="chatInput">
+        <input type="text" placeholder="Type your message..." />
+        <button>Send</button>
+      </div>
+    </div>
+  </section>
+
+
 </body>
 </html>
-
-
