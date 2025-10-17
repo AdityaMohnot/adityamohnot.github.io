@@ -162,11 +162,12 @@ a{
 }
 
 #s3 {
-  background-color: #fff;
-  color: #222;
-  padding: 60px;
-  text-align: center;
-  display: none; /* hidden until submit */
+    background-color: #fff;
+    color: #222;
+    padding: 60px;
+    text-align: center;
+    display: none; /* hidden until submit */
+    height:100vh;
 }
 
 #resTitle {
