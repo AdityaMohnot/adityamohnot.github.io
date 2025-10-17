@@ -124,17 +124,15 @@ document.getElementById("sb").addEventListener("click", () => {
   } else {
     result += "- Keep up the variety and ensure daily consumption of vegetables and proteins.\n";
   }
-
-  // Include specific dish suggestions based on deficiencies
-  result += "\nSample specific meals:\n";
+  
   if (deficientNutrients.includes("VitaminB12") && pref.value) {
-    result += "- Have dishes like fortified cereal, or plant-based milk products (soy/almond milk etc).\n";
+    result += "- Have dishes like fortified cereal, or plant-based milk products (soy/almond milk etc) for Vitamin B12.\n";
   }
   if (deficientNutrients.includes("Omega3") && pref.value) {
-    result += "- Add flaxseed to your meals.\n";
+    result += "- Add flaxseed to your meals for Omega3.\n";
   }
   if (deficientNutrients.includes("Iron") && pref.value) {
-    result += "- Include spinach and lentils.\n";
+    result += "- Include spinach and lentils for Iron.\n";
   }
   
   // Show the analysis result
@@ -142,6 +140,7 @@ document.getElementById("sb").addEventListener("click", () => {
   document.getElementById("resTitle").innerText = selectedDemo.label;
   document.getElementById("resText").innerText = result;
 });
+
 
 
 
