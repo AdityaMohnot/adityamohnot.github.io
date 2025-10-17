@@ -167,7 +167,6 @@ a{
     padding: 60px;
     text-align: center;
     display: none; /* hidden until submit */
-    height:100vh;
 }
 
 #resTitle {
