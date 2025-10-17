@@ -129,14 +129,14 @@ document.getElementById("sb").addEventListener("click", () => {
 
   // Include specific dish suggestions based on deficiencies
   result += "\nSample specific meals:\n";
-  if (deficientNutrients.includes("VitaminB12") && pref.value === "nv") {
+  if (deficientNutrients.includes("VitaminB12") && pref.value) {
     result += "- Have dishes like fortified cereal, or plant-based milk products (soy/almond milk etc).\n";
   }
-  if (deficientNutrients.includes("Omega3") && pref.value === "nv") {
-    result += "- Enjoy fish such as sardines or add flaxseed to your meals.\n";
+  if (deficientNutrients.includes("Omega3") && pref.value) {
+    result += "- Add flaxseed to your meals.\n";
   }
-  if (deficientNutrients.includes("Iron") && pref.value === "nv") {
-    result += "- Include spinach, lentils, and red meat.\n";
+  if (deficientNutrients.includes("Iron") && pref.value) {
+    result += "- Include spinach and lentils.\n";
   }
   
   // Show the analysis result
@@ -144,5 +144,6 @@ document.getElementById("sb").addEventListener("click", () => {
   document.getElementById("resTitle").innerText = selectedDemo.label;
   document.getElementById("resText").innerText = result;
 });
+
 
 
