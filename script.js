@@ -7,8 +7,6 @@ document.getElementById("sb").addEventListener("click", () => {
     return;
   }
 
-  const ctx = document.getElementById("nutrientChart").getContext("2d");
-
   // Thresholds for nutrients to be considered sufficient
   const nutrientThresholds = {
     Carbs: 50,
@@ -144,6 +142,7 @@ document.getElementById("sb").addEventListener("click", () => {
   document.getElementById("resTitle").innerText = selectedDemo.label;
   document.getElementById("resText").innerText = result;
 });
+
 
 
 
