@@ -89,42 +89,7 @@ document.getElementById("sb").addEventListener("click", () => {
       text: "Sample analysis with estimated nutrient values."
     };
   }
-
-  // Destroy previous chart if exists
-  if (window.nutrientChartInstance) {
-    window.nutrientChartInstance.destroy();
-  }
-
-  // Create Radar chart for nutrient profile
-  window.nutrientChartInstance = new Chart(ctx, {
-    type: "radar",
-    data: {
-      labels: selectedDemo.nutrients,
-      datasets: [{
-        label: selectedDemo.label,
-        data: selectedDemo.values,
-        backgroundColor: "rgba(255, 140, 0, 0.2)",
-        borderColor: "rgb(255, 140, 0)",
-        borderWidth: 2,
-        pointBackgroundColor: "#ff8c00"
-      }]
-    },
-    options: {
-      scales: {
-        r: {
-          beginAtZero: true,
-          max: 100,
-          angleLines: { color: "#ddd" },
-          grid: { color: "#ccc" },
-          pointLabels: { color: "#333" }
-        }
-      },
-      plugins: {
-        legend: { display: false }
-      }
-    }
-  });
-
+  
   // Analyze nutrients for sufficiency
   const sufficiencies = selectedDemo.nutrients.map((nutrient, index) => {
     const val = selectedDemo.values[index];
@@ -164,13 +129,13 @@ document.getElementById("sb").addEventListener("click", () => {
 
   // Include specific dish suggestions based on deficiencies
   result += "\nSample specific meals:\n";
-  if (deficientNutrients.includes("VitaminB12")) {
+  if (deficientNutrients.includes("VitaminB12") && pref.value == "nv") {
     result += "- Have dishes like fortified cereal, eggs, or dairy.\n";
   }
-  if (deficientNutrients.includes("Omega3")) {
+  if (deficientNutrients.includes("Omega3") && pref.value == "nv") {
     result += "- Enjoy fish such as sardines or add flaxseed to your meals.\n";
   }
-  if (deficientNutrients.includes("Iron")) {
+  if (deficientNutrients.includes("Iron") && pref.value == "nv") {
     result += "- Include spinach, lentils, and red meat.\n";
   }
   
@@ -179,3 +144,4 @@ document.getElementById("sb").addEventListener("click", () => {
   document.getElementById("resTitle").innerText = selectedDemo.label;
   document.getElementById("resText").innerText = result;
 });
+
